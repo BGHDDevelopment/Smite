@@ -1,0 +1,13 @@
+#Made by BGHDNetwork(Noodles)
+#=======================================================
+#Plugin Page: https://www.spigotmc.org/resources/46604
+#=======================================================
+Update:
+  Enabled: true
+#smite.update
+#Enables if there is a message on-join when the plugin is outdated. 
+#=======================================================
+
+#PERMSSIONS:
+
+#/smite: smite.use
