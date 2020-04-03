@@ -1,7 +1,0 @@
-main: me.noodles.smite.MainSmite
-name: Smite
-version: 0.2
-author: BGHDNetwork(Noodles)
-commands:
-  smite:
-     description: Smite Player 
