@@ -8,15 +8,15 @@ import org.bukkit.entity.*;
 import org.bukkit.event.Listener;
 import org.bukkit.*;
 
-public class MainSmite extends JavaPlugin implements Listener
+public class Smite extends JavaPlugin implements Listener
 {
 	
-    public static MainSmite plugin;
+    public static Smite plugin;
     private UpdateChecker checker;
 
 	
     public void onEnable() {
-    	MainSmite.plugin = this;
+    	Smite.plugin = this;
         final PluginDescriptionFile VarUtilType = this.getDescription();
         this.getLogger().info("Smite V" + VarUtilType.getVersion() + " starting...");
         this.saveDefaultConfig();
@@ -32,7 +32,7 @@ public class MainSmite extends JavaPlugin implements Listener
                 getServer().getConsoleSender().sendMessage("------------------------");
                 getServer().getConsoleSender().sendMessage("Smite is outdated!");
                 getServer().getConsoleSender().sendMessage("Newest version: " + this.checker.getLatestVersion());
-                getServer().getConsoleSender().sendMessage("Your version: " + MainSmite.plugin.getDescription().getVersion());
+                getServer().getConsoleSender().sendMessage("Your version: " + Smite.plugin.getDescription().getVersion());
                 getServer().getConsoleSender().sendMessage("Please Update Here: https://www.spigotmc.org/resources/46604");
                 getServer().getConsoleSender().sendMessage("------------------------");
             }
@@ -51,8 +51,8 @@ public class MainSmite extends JavaPlugin implements Listener
     }
     
     @SuppressWarnings({ "unchecked", "rawtypes"})
-	public static MainSmite getPlugin() {
-        return (MainSmite)getPlugin((Class)MainSmite.class);
+	public static Smite getPlugin() {
+        return (Smite)getPlugin((Class) Smite.class);
     }
     
 

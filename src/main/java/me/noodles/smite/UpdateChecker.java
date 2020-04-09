@@ -4,11 +4,11 @@ import java.io.*;
 
 public class UpdateChecker
 {
-    public MainSmite plugin;
+    public Smite plugin;
     public String version;
     
     
-    public UpdateChecker(MainSmite plugin) {
+    public UpdateChecker(Smite plugin) {
         this.plugin = plugin;
         this.version = this.getLatestVersion();
     }
