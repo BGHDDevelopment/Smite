@@ -1,5 +1,7 @@
 package me.noodles.smite;
 
+import me.noodles.smite.listeners.UpdateJoinEvent;
+import me.noodles.smite.utilities.UpdateChecker;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.*;
@@ -12,7 +14,6 @@ public class Smite extends JavaPlugin implements Listener
 {
 	
     public static Smite plugin;
-    private UpdateChecker checker;
 
 	
     public void onEnable() {
@@ -21,25 +22,22 @@ public class Smite extends JavaPlugin implements Listener
         this.getLogger().info("Smite V" + VarUtilType.getVersion() + " starting...");
         this.saveDefaultConfig();
         this.reloadConfig();
-        registerEvents((Plugin)this, new UpdateJoinEvent());
+        registerEvents((Plugin)this, new UpdateJoinEvent(this));
         registerEvents(this, this);
         this.getLogger().info("Smite V" + VarUtilType.getVersion() + " started!");
         this.setEnabled(true);
         this.getLogger().info("Smite V" + VarUtilType.getVersion() + " checking for updates...");
-        this.checker = new UpdateChecker(this);
-        if (this.checker.isConnected()) {
-            if (this.checker.hasUpdate()) {
-                getServer().getConsoleSender().sendMessage("------------------------");
-                getServer().getConsoleSender().sendMessage("Smite is outdated!");
-                getServer().getConsoleSender().sendMessage("Newest version: " + this.checker.getLatestVersion());
-                getServer().getConsoleSender().sendMessage("Your version: " + Smite.plugin.getDescription().getVersion());
-                getServer().getConsoleSender().sendMessage("Please Update Here: https://www.spigotmc.org/resources/46604");
-                getServer().getConsoleSender().sendMessage("------------------------");
-            }
-            else {
-                getServer().getConsoleSender().sendMessage("------------------------");
-                getServer().getConsoleSender().sendMessage("Smite is up to date!");
-                getServer().getConsoleSender().sendMessage("------------------------");            }
+        if (getConfig().getBoolean("CheckForUpdates.Enabled", true)) {
+            new UpdateChecker(this, 46604).getLatestVersion(remoteVersion -> {
+                getLogger().info("Checking for Updates ...");
+
+                if (getDescription().getVersion().equalsIgnoreCase(remoteVersion)) {
+                    getLogger().info("No new version available");
+                } else {
+                    getLogger().warning(String.format("Newest version: %s is out! You are running version: %s", remoteVersion, getDescription().getVersion()));
+                    getLogger().warning("Please Update Here: http://www.spigotmc.org/resources/46604");
+                }
+            });
         }
     }
     
