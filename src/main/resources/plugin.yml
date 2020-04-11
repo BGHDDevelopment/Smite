@@ -6,3 +6,4 @@ website: https://bghddevelopment.com/
 commands:
   smite:
     description: Smite Player
+    usage: /<command> <player>
