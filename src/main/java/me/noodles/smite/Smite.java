@@ -3,31 +3,32 @@ package me.noodles.smite;
 import me.noodles.smite.commands.SmiteCommand;
 import me.noodles.smite.listeners.UpdateJoinEvent;
 import me.noodles.smite.utilities.UpdateChecker;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.java.*;
-import org.bukkit.command.*;
 import org.bukkit.event.Listener;
-import org.bukkit.*;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class Smite extends JavaPlugin implements Listener
-{
-	
-    public static Smite plugin;
+public class Smite extends JavaPlugin {
 
-	
     public void onEnable() {
-    	Smite.plugin = this;
-        final PluginDescriptionFile VarUtilType = this.getDescription();
-        this.getLogger().info("Smite V" + VarUtilType.getVersion() + " starting...");
+        final String version = this.getDescription().getVersion();
+
+        this.getLogger().info(String.format("Smite v%s starting ...", version));
+
         this.saveDefaultConfig();
         this.reloadConfig();
+
+        this.getLogger().info(String.format("Smite v%s loading commands ...", version));
+
         this.registerCommand("smite", new SmiteCommand());
-        registerEvents((Plugin)this, new UpdateJoinEvent(this));
-        registerEvents(this, this);
-        this.getLogger().info("Smite V" + VarUtilType.getVersion() + " started!");
-        this.setEnabled(true);
-        this.getLogger().info("Smite V" + VarUtilType.getVersion() + " checking for updates...");
+
+        this.getLogger().info(String.format("Smite v%s loading events ...", version));
+
+        this.registerEvents(this, new UpdateJoinEvent(this));
+
+        this.getLogger().info(String.format("Smite v%s started ...", version));
+
         if (getConfig().getBoolean("CheckForUpdates.Enabled", true)) {
             new UpdateChecker(this, 46604).getLatestVersion(remoteVersion -> {
                 getLogger().info("Checking for Updates ...");
@@ -41,9 +42,8 @@ public class Smite extends JavaPlugin implements Listener
             });
         }
     }
-    
-    
-    public static void registerEvents(final Plugin plugin, final Listener... listeners) {
+
+    private void registerEvents(final Plugin plugin, final Listener... listeners) {
         for (final Listener listener : listeners) {
             Bukkit.getServer().getPluginManager().registerEvents(listener, plugin);
         }
@@ -51,11 +51,6 @@ public class Smite extends JavaPlugin implements Listener
 
     private void registerCommand(final String command, final CommandExecutor executor) {
         this.getCommand(command).setExecutor(executor);
-    }
-    
-    @SuppressWarnings({ "unchecked", "rawtypes"})
-	public static Smite getPlugin() {
-        return (Smite)getPlugin((Class) Smite.class);
     }
 
 }
