@@ -23,10 +23,10 @@ public final class UpdateJoinEvent implements Listener {
         if (getPlugin().getConfig().getBoolean("Update.Enabled", true)) {
             if (player.hasPermission("smite.update")) {
                 if (getPlugin().getConfig().getBoolean("CheckForUpdates.Enabled", true)) {
-                    new UpdateChecker(getPlugin(), 45988).getLatestVersion(version -> {
+                    new UpdateChecker(getPlugin(), 46604).getLatestVersion(version -> {
                         if (!getPlugin().getDescription().getVersion().equalsIgnoreCase(version)) {
                             player.sendMessage(ChatColor.GRAY + "=========================");
-                            player.sendMessage(ChatColor.RED + "DayAndNight is outdated!");
+                            player.sendMessage(ChatColor.RED + "Smite is outdated!");
                             player.sendMessage(ChatColor.GREEN + "Newest version: " + version);
                             player.sendMessage(ChatColor.RED + "Your version: " + getPlugin().getDescription().getVersion());
                             player.sendMessage(ChatColor.GRAY + "=========================");
