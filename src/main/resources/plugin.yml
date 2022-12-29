@@ -1,9 +1,5 @@
 name: Smite
-version: ${project.version}
-main: me.noodles.smite.Smite
+version: 0.3
+main: com.bghddevelopment.smite.Smite
 authors: [BGHDDevelopment]
 website: https://bghddevelopment.com/
-commands:
-  smite:
-    description: Smite Player
-    usage: /<command> <player>

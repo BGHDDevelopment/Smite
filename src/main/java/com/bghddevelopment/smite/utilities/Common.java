@@ -1,6 +1,5 @@
-package me.noodles.smite.utilities;
+package com.bghddevelopment.smite.utilities;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import java.util.Arrays;
@@ -15,8 +14,8 @@ public class Common {
         Arrays.stream(messages).map(Common::translate).forEach(sender::sendMessage);
     }
 
-    private static String translate(final String value) {
-        return ChatColor.translateAlternateColorCodes('&', value);
+    private static String translate(final String message) {
+        return Color.translate(message);
     }
 
 }
