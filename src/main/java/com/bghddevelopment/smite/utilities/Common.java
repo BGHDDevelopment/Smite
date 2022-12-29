@@ -15,8 +15,8 @@ public class Common {
         Arrays.stream(messages).map(Common::translate).forEach(sender::sendMessage);
     }
 
-    private static String translate(final String value) {
-        return ChatColor.translateAlternateColorCodes('&', value);
+    private static String translate(final String message) {
+        return Color.translate(message);
     }
 
 }
