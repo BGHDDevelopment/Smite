@@ -1,5 +1,8 @@
 package com.bghddevelopment.smite;
 
+import co.aikar.commands.BukkitCommandIssuer;
+import co.aikar.commands.BukkitCommandManager;
+import co.aikar.commands.ConditionFailedException;
 import com.bghddevelopment.smite.commands.SmiteCommand;
 import com.bghddevelopment.smite.utilities.Color;
 import com.google.gson.JsonObject;
@@ -28,7 +31,7 @@ public class Smite extends JavaPlugin {
 
         this.getLogger().info(String.format("Smite v%s loading commands ...", version));
 
-        this.registerCommand("smite", new SmiteCommand());
+        loadCommands();
 
         this.getLogger().info(String.format("Smite v%s loading events ...", version));
 
@@ -37,8 +40,15 @@ public class Smite extends JavaPlugin {
         updateCheck(Bukkit.getConsoleSender(), true);
     }
 
-    private void registerCommand(final String command, final CommandExecutor executor) {
-        this.getCommand(command).setExecutor(executor);
+    private void loadCommands() {
+        BukkitCommandManager manager = new BukkitCommandManager(this);
+        manager.getCommandConditions().addCondition("noconsole", (context) -> {
+            BukkitCommandIssuer issuer = context.getIssuer();
+            if (!issuer.isPlayer()) {
+                throw new ConditionFailedException("Console cannot use this command.");
+            }
+        });
+        manager.registerCommand(new SmiteCommand());
     }
 
     public void updateCheck(CommandSender sender, boolean console) {

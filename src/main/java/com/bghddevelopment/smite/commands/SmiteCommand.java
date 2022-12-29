@@ -1,9 +1,14 @@
 package com.bghddevelopment.smite.commands;
 
+import co.aikar.commands.BaseCommand;
+import co.aikar.commands.annotation.*;
+import com.bghddevelopment.smite.Smite;
 import com.bghddevelopment.smite.utilities.Common;
+import javafx.scene.control.Tab;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
@@ -14,15 +19,20 @@ import java.util.List;
  * Author:  Kim (Thinkverse) Hallberg <work@hallberg.kim>
  * Created: 2020-04-11 16:36
  */
-public final class SmiteCommand implements TabExecutor {
-    private final String PERMISSION = "smite.use";
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player) {
+@CommandAlias("smite|smite")
+@Description("Smite someone")
+@CommandPermission("smite.use")
+@Conditions("noconsole")
+public final class SmiteCommand extends BaseCommand implements TabCompleter {
+
+    @Dependency
+    private Smite plugin;
+
+    @Default
+    public void onDefault(CommandSender sender, String[] args) {
             final Player player = (Player) sender;
 
-            if (player.hasPermission(PERMISSION)) {
                 if (args.length >= 1) {
                     final Player target = Bukkit.getServer().getPlayer(args[0]);
 
@@ -33,24 +43,14 @@ public final class SmiteCommand implements TabExecutor {
                     } else {
                         Common.tell(player, "&cInvalid! Player not found!");
                     }
-
-                    return true;
+                    return;
                 }
-
-                return false;
-            } else {
-                Common.tell(player, "&cYou don't have permission to use this command!");
-            }
-
-            return true;
-        }
-
-        return false;
+        return;
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        return (args.length == 1 && sender.hasPermission(PERMISSION)) ? null : Collections.emptyList();
+        return (args.length == 1 && sender.hasPermission("smite.use")) ? null : Collections.emptyList();
     }
 
 }
