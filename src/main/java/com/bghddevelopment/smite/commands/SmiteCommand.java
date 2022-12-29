@@ -1,6 +1,6 @@
-package me.noodles.smite.commands;
+package com.bghddevelopment.smite.commands;
 
-import me.noodles.smite.utilities.Common;
+import com.bghddevelopment.smite.utilities.Common;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

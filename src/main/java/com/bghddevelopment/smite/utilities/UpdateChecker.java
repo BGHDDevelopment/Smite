@@ -1,6 +1,6 @@
-package me.noodles.smite.utilities;
+package com.bghddevelopment.smite.utilities;
 
-import me.noodles.smite.Smite;
+import com.bghddevelopment.smite.Smite;
 import org.bukkit.Bukkit;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package me.noodles.smite.utilities;
+package com.bghddevelopment.smite.utilities;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

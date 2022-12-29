@@ -1,7 +1,7 @@
-package me.noodles.smite.listeners;
+package com.bghddevelopment.smite.listeners;
 
-import me.noodles.smite.Smite;
-import me.noodles.smite.utilities.UpdateChecker;
+import com.bghddevelopment.smite.Smite;
+import com.bghddevelopment.smite.utilities.UpdateChecker;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

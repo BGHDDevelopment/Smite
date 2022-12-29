@@ -1,6 +1,6 @@
 name: Smite
 version: ${project.version}
-main: me.noodles.smite.Smite
+main: com.bghddevelopment.smite.Smite
 authors: [BGHDDevelopment]
 website: https://bghddevelopment.com/
 commands:

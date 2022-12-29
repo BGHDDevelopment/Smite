@@ -1,8 +1,8 @@
-package me.noodles.smite;
+package com.bghddevelopment.smite;
 
-import me.noodles.smite.commands.SmiteCommand;
-import me.noodles.smite.listeners.UpdateJoinEvent;
-import me.noodles.smite.utilities.UpdateChecker;
+import com.bghddevelopment.smite.commands.SmiteCommand;
+import com.bghddevelopment.smite.listeners.UpdateJoinEvent;
+import com.bghddevelopment.smite.utilities.UpdateChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.Plugin;
