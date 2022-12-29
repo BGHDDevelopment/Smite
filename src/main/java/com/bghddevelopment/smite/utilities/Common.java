@@ -1,6 +1,5 @@
 package com.bghddevelopment.smite.utilities;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import java.util.Arrays;

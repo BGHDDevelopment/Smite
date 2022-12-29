@@ -8,10 +8,7 @@ import com.bghddevelopment.smite.utilities.Color;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.BufferedReader;
@@ -24,18 +21,13 @@ public class Smite extends JavaPlugin {
     public void onEnable() {
         final String version = this.getDescription().getVersion();
 
-        this.getLogger().info(String.format("Smite v%s starting ...", version));
+        Color.log(String.format("Smite v%s starting ...", version));
 
-        this.saveDefaultConfig();
-        this.reloadConfig();
-
-        this.getLogger().info(String.format("Smite v%s loading commands ...", version));
+        Color.log(String.format("Smite v%s loading commands ...", version));
 
         loadCommands();
 
-        this.getLogger().info(String.format("Smite v%s loading events ...", version));
-
-        this.getLogger().info(String.format("Smite v%s started ...", version));
+        Color.log(String.format("Smite v%s started ...", version));
 
         updateCheck(Bukkit.getConsoleSender(), true);
     }

@@ -4,12 +4,10 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import com.bghddevelopment.smite.Smite;
 import com.bghddevelopment.smite.utilities.Common;
-import javafx.scene.control.Tab;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
 import java.util.Collections;
@@ -31,20 +29,20 @@ public final class SmiteCommand extends BaseCommand implements TabCompleter {
 
     @Default
     public void onDefault(CommandSender sender, String[] args) {
-            final Player player = (Player) sender;
+        final Player player = (Player) sender;
 
-                if (args.length >= 1) {
-                    final Player target = Bukkit.getServer().getPlayer(args[0]);
+        if (args.length >= 1) {
+            final Player target = Bukkit.getServer().getPlayer(args[0]);
 
-                    if (target != null) {
-                        Common.tell(player, "&aHit &e{target} &awith a lightning strike!".replace("{target}", target.getName()));
+            if (target != null) {
+                Common.tell(player, "&aHit &e{target} &awith a lightning strike!".replace("{target}", target.getName()));
 
-                        target.getWorld().strikeLightningEffect(target.getLocation());
-                    } else {
-                        Common.tell(player, "&cInvalid! Player not found!");
-                    }
-                    return;
-                }
+                target.getWorld().strikeLightningEffect(target.getLocation());
+            } else {
+                Common.tell(player, "&cInvalid! Player not found!");
+            }
+            return;
+        }
         return;
     }
 
